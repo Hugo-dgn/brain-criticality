@@ -1,13 +1,22 @@
-function alpha = DiscreteBoundedPowerLawMLE(x, xmin, xmax, alphaStep, alphaMin, alphaMax)
-    if nargin < 5
-        alphaMin = 1;
+function alpha = DiscreteBoundedPowerLawMLE(x, xmin, xmax, step)
+    X = x((x>=xmin) & (x<=xmax));
+    n = length(X);
+    l1 = sum(log(X));
+    t = xmin:xmax;
+    log_t = log(t);
+
+    upper = 6;
+    lower = 1.1;
+    
+    for i = 1:step
+        mid = (upper + lower)/2;
+        D = DiscreteBoundedPowerLawLikelihoodDerivative(n, l1, t, log_t, mid);
+        if D > 0
+            lower = mid;
+        else
+            upper = mid;
+        end
     end
-    if nargin < 6
-        alphaMax = 4;
-    end
-    alphas = alphaMin:alphaStep:alphaMax;
-    L = DiscreteBoundedPowerLawLikelihood(x, xmin, xmax, alphas);
-    [~, i] = max(L);
-    alpha = alphas(i);
+    alpha = (upper + lower)/2;
 end
 

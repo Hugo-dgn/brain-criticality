@@ -1,4 +1,4 @@
-function lifetime = catRegionAvalLifetime(region)
+function lifetime = catICAAvalLifetime(region)
     lifetime = [];
     for i = 1:numel(region.brain_array)
         brain = region.brain_array(i);
