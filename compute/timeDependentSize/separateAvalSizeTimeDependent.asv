@@ -4,10 +4,9 @@ arguments
 end
     % Separate every avalanche profile, this is useful for the shape
     % collapse. Each avalanche profile is stored in the avalArrays cell and
-    % there corresponding length is stored in avalArraysSize
+    % there corresponding lenght is stored in avalArraysSize
 
-    %this function assume that in the input, each avalanche is separated by
-    %a 0 (this is the aval_timeDependendentSize member of region)
+    %this functi
     if isempty(timeDependendentSize)
         avalArrays = {};
         return

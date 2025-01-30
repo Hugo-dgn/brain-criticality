@@ -1,4 +1,5 @@
 function [BS, BT, BST] = bootstrapping(S, T, ST, samples, k)
+    %bootstrap S, T and ST k times withe 'samples' samples each
     BS = zeros(samples, k);
     BT = zeros(samples, k);
     BST = {};

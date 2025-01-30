@@ -7,8 +7,8 @@ function [g, b, c, d] = rawRegionSwipe(regions, opt)
 % c : chis estimations
 % d : range of the fit over which the above estimation were made
 
-% thise list are of shape (num_regions, num_states) to cover every
-% possibilities
+% thise list are of lenght num_states*num_regions to cover every
+% possibility
 arguments
   regions
   opt.significanceLevel = 0.05

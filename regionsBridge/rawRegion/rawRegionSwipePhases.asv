@@ -11,9 +11,7 @@ function [Ids, States, Phases, G] = rawRegionSwipePhases(session, opt)
 % phases. The i-th entry of `G` is a matrix of size 
 % `length(Ids(i)) × length(States(i)) × 3`, as it contains all the 
 % gamma estimations for each combination of states and regions in the phase
-% `Phases(i)`. Note that since the states are no longer separated into
-% different `region` objects, the code is unable to differentiate states
-% (see `helpers/checkState.m`).  
+% `Phases(i)`. Note that since the states are no longer separated into different `region` objects, the code is unable to differentiate states (see `helpers/checkState.m`).  
 arguments
   session
   opt.significanceLevel = 0.2

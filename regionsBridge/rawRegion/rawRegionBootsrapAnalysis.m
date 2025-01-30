@@ -6,8 +6,8 @@ arguments
   opt.min_decade = 1
   opt.base = 1.5
   opt.threshold = 4
-  opt.samples = 0.5
-  opt.bootstrap = 1000
+  opt.samples = 0.01
+  opt.bootstrap = 100
   opt.states = 'all'
   opt.regions = [-1]
 end

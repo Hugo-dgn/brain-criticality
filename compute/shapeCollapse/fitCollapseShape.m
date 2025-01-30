@@ -1,4 +1,11 @@
 function gam = fitCollapseShape(T, shape, dicoStep)
+    % compute the optimal gamma for the collapse shape by minimizing the variability of the common
+    % shape acccros each difference lifetime
+    % T = lifetime
+    % shape = collapse shape (see docs/README.md for more information)
+    % dicoStep = number of step to perform the dichotomy
+
+
     %n = size(shape, 2);
     %scalarProductMatrix = getScalarMatrix(shape);
 
@@ -10,7 +17,7 @@ function gam = fitCollapseShape(T, shape, dicoStep)
     left = 1;
     right = 4;
     for i = 1:dicoStep
-        middle = (right+left)/2;
+        middle = (right+left)/2; % here middle is the candidate gamma
         %L_middle = Dloss(scalarProductMatrix, T, middle, n);
         f = scaleCollapseShape(shape, T, middle);
         L_middle = DvariabilityLoss(f, T);
@@ -62,6 +69,7 @@ function L = variabilityLoss(f)
 end
 
 function D = DvariabilityLoss(f, T)
+    % this is the derivative of the variability at the point middle (in the main loop)
     m = size(f, 2);
     mu = mean(f, 2);
     f_ln_T = f.*log(T);

@@ -14,7 +14,7 @@ arguments
   opt.verbose = true
 end
 
-    % this function gives the gamma estimation for each combinason of state and
+    % this function the gamma estimation for each combinason of state and
     % region. This is deprecated as the program is not able to
     % differenciate states with the new version of regions. The result will
     % be the same for each state, only the region parameter will have an
@@ -22,10 +22,9 @@ end
     % state was a memeber of region, it is not the case anymore)
 
     %output:
-    % - g : the gammas estimations
-    % - b : branching ratio estimations
-    % - c : chis estimations (for slow decay of autocorelation)
-    % - d : number of decades for each estimation (somewhat useless)
+    % - g : the gammas estimation
+    % - b : branching ratio estimation
+    % - c : chis
 
     opt.regions = regions.ids;
     opt.states = regions.states;

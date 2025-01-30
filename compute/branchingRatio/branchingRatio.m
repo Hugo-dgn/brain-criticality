@@ -1,4 +1,7 @@
 function [m, r, lm] = branchingRatio(profile, kmax)
+%compute the branching with the method proposed by : Inferring collective
+%dynamical states from widely, Jens Wilting1 & Viola Priesemann
+unobserved systems
     r = zeros(1, kmax);
 
     for i = 1:kmax
@@ -11,6 +14,6 @@ function [m, r, lm] = branchingRatio(profile, kmax)
     nonNegative = r > 0;
     x = x(nonNegative);
     y = r(nonNegative);
-    lm = fitlm(x, y);
+    lm = fitlm(x, log(y));
     m = exp(lm.Coefficients.Estimate(2));
 end

@@ -1,8 +1,9 @@
 function [S, T, ST, Ealpha, Ebeta, Egamma1, Egamma2, Egamma3] = bootstrapAnalysis(S, T, ST, opt)
+%use bootstrap to compute the distribution of the different gamma estimator
 arguments
-  S
-  T
-  ST
+  S %size
+  T %lifetime
+  ST %time dependent size (see separateAvalSizeTimeDependent function)
   opt.significanceLevel = 0.05
   opt.dicoStep = 10
   opt.min_decade = 1
@@ -12,8 +13,9 @@ arguments
   opt.bootstrap = 1000
 end
     samples = floor(length(S)*opt.samples);
-    [BS, BT, BST] = bootstrapping(S, T, ST, samples, opt.bootstrap);
+    [BS, BT, BST] = bootstrapping(S, T, ST, samples, opt.bootstrap); %sample op.bootstrap times the data
 
+    %those are the list that will contain the result of the bootstrap
     Ealpha = zeros(1, opt.bootstrap);
     Ebeta = zeros(1, opt.bootstrap);
     Egamma1 = zeros(1, opt.bootstrap);
@@ -46,7 +48,7 @@ end
     close(f)
 
 
-    indices = ~isnan(Ealpha);
+    indices = ~isnan(Ealpha); % remove unsuccessful fit
     Ealpha = Ealpha(indices);
     Ebeta = Ebeta(indices);
     Egamma1 = Egamma1(indices);
@@ -58,24 +60,14 @@ end
 end
 
 function [alpha, beta, area_gam, gam, shape_gam] = boostraptask(S, T, ST, opt)
-    ST_AVG = AvalAverageSizeTimeDependent(ST);
+    ST_lenght = cellfun(@length, ST);
     A = getArea(T, S);
-    [alpha, ~, ~, ~, beta, ~, ~, ~, Alm, gam, ~, ~, ~, shape_gam] = analysis(S, T, A, ST_AVG, significanceLevel=opt.significanceLevel, dicoStep=opt.dicoStep, min_decade=opt.min_decade, base=opt.base, threshold=opt.threshold, verbose=false);
+    %we only keep the relevent part of the analysis function, meaning the apart that will let use compute the three estimator of gamma
+    [alpha, ~, ~, ~, beta, ~, ~, ~, Alm, gam, ~, ~, ~, shape_gam] = analysis(S, T, A, ST, ST_lenght,ones(1, 3), significanceLevel=opt.significanceLevel, dicoStep=opt.dicoStep, min_decade=opt.min_decade, base=opt.base, threshold=opt.threshold, verbose=false);
     if alpha > 0 && beta > 0
         area_gam = Alm.Coefficients.Estimate(2);
     else
         [alpha, beta, area_gam, gam, shape_gam] = deal(NaN);
-    end
-end
-
-function updateWaitBar(f, k, reset)
-    persistent iter;
-    if isempty(iter) || reset
-        iter = 0;  % Initialize on the first call
-    else
-        iter = iter + 1;  % Increment the count
-        waitbar(iter / k, f, sprintf('Computing (%d/%d)', iter, k));
-        drawnow limitrate
     end
 end
 

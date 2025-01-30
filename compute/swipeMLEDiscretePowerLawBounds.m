@@ -1,4 +1,12 @@
 function [alpha, xmin, xmax, p] = swipeMLEDiscretePowerLawBounds(x, significanceLevel, dicoStep, min_decade, base, verbose)
+    % x: data
+    % significanceLevel: significance level for the Kolmogorov-Smirnov test
+    % dicoStep: number of step to perform the dichotomy
+    % min_decade: minimum number of decade between xmin and xmax
+    % base: base of the grid search
+    % verbose: display progress bar
+
+    %see docs/powerLawFit.md for more information
     x = preprocess(x);
     xminBound = min(x);
     xmaxBound = max(x);
@@ -34,10 +42,10 @@ function [alpha, xmin, xmax, p] = swipeMLEDiscretePowerLawBounds(x, significance
                 waitbar((iter-1)/total_iterations, f, ...
                     sprintf('Computing (%d/%d)', iter, total_iterations));
             end
-            alpha = DiscreteBoundedPowerLawMLE(x, xmin, xmax, dicoStep);
-            p = kolmogorovSmirnovGoodnessFit(x, xmin, xmax, alpha);
+            alpha = DiscreteBoundedPowerLawMLE(x, xmin, xmax, dicoStep); % perform MLE
+            p = kolmogorovSmirnovGoodnessFit(x, xmin, xmax, alpha); % perform Kolmogorov-Smirnov test
             if (p > significanceLevel)
-                if log10(xmax/xmin) > log10(current_xmax/current_xmin)
+                if log10(xmax/xmin) > log10(current_xmax/current_xmin) % if the range is better that the previous fit, keeps the current fit
                     current_p = p;
                     current_alpha = alpha;
                     current_xmin = xmin;
@@ -64,10 +72,12 @@ function xmax = getXmax(xmin, base, j)
 end
 
 function i = upper_i(xmaxBound, xminBound, min_decade, base)
+    %see docs/powerLawFit.md for more information
     i = floor(log(xmaxBound - xminBound - 10^min_decade)/log(base));
 end
 
 function [lower, upper] = bound_j(xmaxBound, xmin, min_decade, base)
+    %see docs/powerLawFit.md for more information
     lower = floor(log(10^min_decade)/log(base));
     upper = floor(log(xmaxBound - xmin)/log(base));
 end

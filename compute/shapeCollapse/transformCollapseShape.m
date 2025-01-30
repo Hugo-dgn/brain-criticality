@@ -1,4 +1,6 @@
 function [x, S, T] = transformCollapseShape(shape)
+    %interpolate all the array in shape so that they all have the length m
+    %x represent linear time between 0 and 1 for each shape
     n = numel(shape);
     m = 100;
     x = linspace(0, 1, m);

@@ -1,4 +1,4 @@
-function plotAutocorrelationDecay(autocorr, mean_autocorr, lm, T_ref)
+ function plotAutocorrelationDecay(autocorr, mean_autocorr, lm, T_ref)
     n = length(autocorr);
     
     
