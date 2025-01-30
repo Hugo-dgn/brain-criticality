@@ -1,4 +1,10 @@
-function currentVars = rawRegionSwipePC(R, opt)
+function [vars, scores, bestVars] = rawRegionSwipePC(R, opt)
+%swipe all possible varience percentage explained to find the best critical subspace.
+%output :
+%-vars : all the variance tested
+%-scorse : the criticality score for each variance (precision of gamma
+%estimation)
+%bestVars : the variance corresponding to
 arguments
     R
     opt.start = 0.05
@@ -14,8 +20,10 @@ end
         r = R.computeAvalanches(dopc=true, var=v, verbose=false);
         [gammas, ~, ~, ~] = rawRegionSwipe(r, verbose=false);
         score = 1./(abs(gammas(:, :, 1) - gammas(:,:,2)));
-        scores(i,:,:) = sci
+        scores(i, :, :) = score;
         waitbar(i / opt.step, f, sprintf('Computing (%d/%d)', i, opt.step));
     end
     close(f);
+    [~, i] = max(scores);
+    bestVars = vars(i);
 end

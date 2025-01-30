@@ -1,4 +1,6 @@
 function plotRawRegionSwipePhases(session, opt)
+%wrapper for rawRegionSwipePhases and plotCriticalityScorePhases. It plots
+%the criticality score for all state, regions and phasses combination
 arguments
   session
   opt.significanceLevel = 0.05

@@ -1,4 +1,5 @@
 function plotRawRegionAnalysis(regions, opt)
+%wrapper for rawRegionAnalysis and plotAnalysis (see README.md)
 arguments
   regions
   opt.significanceLevel = 0.05

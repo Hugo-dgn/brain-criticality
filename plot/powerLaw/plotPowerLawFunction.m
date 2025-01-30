@@ -1,4 +1,8 @@
 function plotPowerLawFunction(lm, opt)
+%This is used to plot the Area vs Lifetime relation. It takes a fitlm
+%object as argument and pplot the regression on loglog
+%if expected_gamma is specified it will be displayed on the plots. (the
+%expected gamma iss given by the scaling relation)
 arguments
     lm
     opt.expected_gamma = -1

@@ -1,4 +1,9 @@
 function chi = swipeAutocorrelationDecay(ST, opt)
+%swipe the reference time parameter T_ref to find the best fit of slow
+%autocorelation decay. See Tian et .al Theoretical foundations of studying
+%criticality in the brain
+
+%The best chi estimation is the one with the largest r squared
 arguments
     ST
     opt.step = 10

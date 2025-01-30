@@ -4,13 +4,13 @@ arguments
   S %size
   T %lifetime
   ST %time dependent size (see separateAvalSizeTimeDependent function)
-  opt.significanceLevel = 0.05
-  opt.dicoStep = 10
-  opt.min_decade = 1
-  opt.base = 1.5
-  opt.threshold = 4
-  opt.samples = 0.1
-  opt.bootstrap = 1000
+  opt.significanceLevel = 0.05 %significant level for power law fit
+  opt.dicoStep = 10 %dicotomie step for power law fit
+  opt.min_decade = 1 %minimum decade for power law fit range
+  opt.base = 1.5 %see powerLawFit.md
+  opt.threshold = 4 %minimum lifetime of avalanche to consider in shape collapse estimation
+  opt.samples = 0.05 %sample percentage of the raw data fot each sub sampling
+  opt.bootstrap = 1000 %number of subsample to compute
 end
     samples = floor(length(S)*opt.samples);
     [BS, BT, BST] = bootstrapping(S, T, ST, samples, opt.bootstrap); %sample op.bootstrap times the data

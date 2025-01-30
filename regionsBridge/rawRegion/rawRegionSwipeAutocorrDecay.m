@@ -1,4 +1,10 @@
 function chi = rawRegionSwipeAutocorrDecay(regions, opt)
+%swipe the reference time parameter T_ref to find the best fit of slow
+%autocorelation decay. See Tian et .al Theoretical foundations of studying
+%criticality in the brain
+
+%This is a wrapper for swipeAutocorrelationDecay, it just extract data and
+%feed it to the function
 arguments
     regions
     opt.step = 10

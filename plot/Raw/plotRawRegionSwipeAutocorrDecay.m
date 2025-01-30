@@ -1,4 +1,6 @@
 function chi = plotRawRegionSwipeAutocorrDecay(regions, opt)
+%wrapper for rawRegionSwipeAutocorrDecay, it plots the slow decay of
+%autocorelation parameters vs reference time.
 arguments
     regions
     opt.step = 10

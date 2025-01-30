@@ -1,4 +1,7 @@
 function [uniqueST_lengths, autocorr, mean_autocorr, lm] = rawRegionAutocorrDecay(regions, T_ref, opt)
+%wrapper for autocorrelationDecay, extract data from region and feed it to
+%the function. Returns the estimation of the slow decay of autorelation
+%parameter
 arguments
     regions
     T_ref

@@ -1,4 +1,8 @@
 function meanAvalArrays = AvalAverageSizeTimeDependent(avalArrays, avalArraysSizes, opt)
+%takes every avalanche of same lifetime and average them. The resulting
+%cell is of size 'number of unique lifetime'
+%avalArrays : all avalanche profile
+%avalArraysSizes : lifetime of every avalanche (size of the list)
 arguments
     avalArrays
     avalArraysSizes

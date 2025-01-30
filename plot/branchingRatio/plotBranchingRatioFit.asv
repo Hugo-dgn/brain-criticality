@@ -4,7 +4,6 @@ function plotBranchingRatioFit(m, r, lm)
     %unobserved systems
     % m : is the estimated branching ratio
     % r : list of laged branching ratio
-    % lm : fit of r against a power function
     b = exp(lm.Coefficients.Estimate(1));
     kmax = length(r);
     x = 1:kmax;

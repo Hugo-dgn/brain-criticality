@@ -1,4 +1,10 @@
 function [vars, scores, bestVars] = rawRegionSwipePC(R, opt)
+%swipe all possible varience percentage explained to find the best critical subspace.
+%output :
+%-vars : all the variance tested
+%-scorse : the criticality score for each variance (precision of gamma
+%estimation)
+%bestVars : the variance corresponding to the best critical subspace.
 arguments
     R
     opt.start = 0.05

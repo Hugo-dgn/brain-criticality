@@ -1,4 +1,9 @@
 function [S, T, ST, Ealpha, Ebeta, Egamma1, Egamma2, Egamma3] = rawRegionBootsrapAnalysis(regions, opt)
+%wrapper for bootstrapAnalysis, it just extract data from region and feed
+%it to the function. Return the data on which the boostrap was performed
+%and the list of estimated alpha, gamma (for power law fit) and gammas (the
+%3 different ways = scaling relation, shape collapse, Area vs Lifetime
+%relation)
 arguments
   regions
   opt.significanceLevel = 0.05

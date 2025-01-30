@@ -1,4 +1,5 @@
 function plotRawRegionBoostrapAnalysis(regions,opt)
+%wrapper for rawRegionBootsrapAnalysis
 arguments
   regions
   opt.significanceLevel = 0.05

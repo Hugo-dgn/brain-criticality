@@ -1,4 +1,10 @@
 function plotScalledShapeCollapseTransform(x, T, shape, gam)
+    %plot the shape collapse, if it works well all the shape in the shape
+    %atgument should fall onto the same line (idealy a quadratic)
+    % x - (1, 100) list
+    % shape - (100, n) list where n is the number of unique avalanche Liftime
+    % T - (1, n) list containing the corresponding lifetime of shape.
+    
     % Calculate scaled and collapsed shape
     scale_shape = scaleCollapseShape(shape, T, gam);
     

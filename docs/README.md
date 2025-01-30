@@ -13,7 +13,22 @@ session = "/mnt/cortex-data-311/Rat386-20180921/Rat386-20180921.xml";
 R = regions(session);
 R = R.loadSpikes();
 R = R.computeAvalanches();
-```  
+```
+
+You can also compute avalanches with pca reduction step :
+
+```matlab
+session = "/mnt/cortex-data-311/Rat386-20180921/Rat386-20180921.xml";
+R = regions(session);
+R = R.loadSpikes();
+R = R.computeAvalanches(dopc=true, var=0.9);
+```
+
+Here the `var` (percent) argument specified how much of the variance you want to keep. If you want to compare it to the remaining pc, meaning keep only low variance pc that explains `1-var` percent of the variance : 
+
+```matlab
+R = R.computeAvalanches(dopc=true, var=0.9, first=false);
+```
 
 The relevant variables are stored in the `regions_array` member of the `R` object.
 

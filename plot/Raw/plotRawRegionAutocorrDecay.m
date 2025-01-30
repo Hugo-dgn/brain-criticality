@@ -1,4 +1,5 @@
 function plotRawRegionAutocorrDecay(regions, T_ref, opt)
+%wrapper rawRegionAutocorrDecay and plotAutocorrelationDecay
 arguments
     regions
     T_ref

@@ -1,4 +1,5 @@
 function plotRawRegionBranchingRatio(R, kmax, opt)
+%wrapper for plotBranchingRatio
 arguments
     R
     kmax

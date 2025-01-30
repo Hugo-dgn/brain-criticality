@@ -1,4 +1,6 @@
 function [T, alpha, Txmin, Txmax, Tp, S, beta, Sxmin, Sxmax, Sp, Alm, gam, x_shape, T_shape, shape, shape_gam, branching, crossCorr, branchingRatiolm, autocorrDecay, mean_autocorr, autocorrlm] = rawRegionAnalysis(regions, opt)
+%wrapper for analysis. It returns the results of all criticality analysis
+%see README.md
 arguments
   regions
   opt.significanceLevel = 0.05

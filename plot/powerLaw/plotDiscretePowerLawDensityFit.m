@@ -1,4 +1,10 @@
 function plotDiscretePowerLawDensityFit(x, xmin, xmax, alpha, fitVariable)
+    %plot empirical powerlaw density of x and the fited bounded powerlaw
+    % x - 1-D list raw data
+    % xmin and xmax : bound of the fit powerlaw
+    % alpha - parameter of the power law
+    %fitVariable - either alpha or beta (name of the variable displayed on
+    %the plot
     x = preprocess(x);
     if nargin < 5
         fitVariable = 'alpha';
@@ -18,7 +24,7 @@ function plotDiscretePowerLawDensityFit(x, xmin, xmax, alpha, fitVariable)
     for i = 1:n
         counts(i) = sum(x == i);
     end
-    C1 = 1/sum(counts(1,xmin:xmax));
+    C1 = 1/sum(counts(1,xmin:xmax)); %normalisation constant
     indices = counts > 0;
     counts = counts(indices);
     bin_centers = bin_centers(indices);

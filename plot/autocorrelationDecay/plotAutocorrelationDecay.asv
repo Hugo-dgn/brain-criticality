@@ -23,7 +23,7 @@ criticality in the brain
     z = linspace(0, 1, length(mean_autocorr));
     semilogy(z, mean_autocorr, 'LineWidth', 1.5, 'HandleVisibility', 'off');
     
-    %plots the fit (equation 53 of the paper)
+    %plots the fit (equati
     chi = -lm.Coefficients.Estimate(2);
     r = lm.Coefficients.Estimate(1);
 
