@@ -4,7 +4,7 @@
     % autocorr : cell of autotoceralation function (the size of this cell
     % is equal to the number of unique Liftime). This variable represente
     % the left side of the equation 53 of the mentioned paper
-criticality in the brain
+    %criticality in the brain
     n = length(autocorr);
     
     
